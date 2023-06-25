@@ -1,0 +1,206 @@
+﻿using Terraria.Audio;
+using Terraria.GameContent;
+using Terraria.GameContent.UI.Elements;
+using Terraria.Localization;
+using Terraria.ModLoader.UI;
+
+namespace VanityProfiles.Content.UI;
+// TODO - allow profiles to be selected but not equipped
+internal class UIVanity : UIState
+{
+    public UIWindow Window;
+    public UIElement RightSide;
+    public UIElement LeftSide;
+
+    public UIText ProfileName;
+    public UIList ProfileList;
+
+    public override void OnActivate()
+    {
+        RemoveAllChildren();
+        CreateUI();
+        Recalculate();
+    }
+
+    public void CreateUI()
+    {
+        #region Basic Setup
+        Window = new UIWindow(Language.GetText("Mods.VanityProfiles.UI.VanityProfiles"), CloseWindow)
+        {
+            Width = { Pixels = 900 },
+            Height = { Pixels = 600 },
+            HAlign = 0.5f,
+            VAlign = 0.5f,
+        };
+        Append(Window);
+
+        LeftSide = new UIElement
+        {
+            Height = { Percent = 1f },
+            Width = { Percent = 0.6f },
+            PaddingBottom = 12,
+            PaddingRight = 12,
+        };
+        Window.Content.Append(LeftSide);
+
+        RightSide = new UIElement
+        {
+            Height = { Percent = 1f },
+            Width = { Percent = 0.4f },
+            HAlign = 1f,
+            PaddingBottom = 12,
+            PaddingLeft = 12,
+        };
+        Window.Content.Append(RightSide);
+
+        var divider = new UIDivider(horizontal: false)
+        {
+            HAlign = 0.6f,
+        };
+        Window.Content.Append(divider);
+        #endregion
+
+        #region Left Side
+        PopulateCustomization();
+        #endregion
+
+        #region Right Side
+        // Profile preview
+        ProfileName = new UIText(Language.GetText("Mods.VanityProfiles.UI.NoProfileSelected"))
+        {
+            HAlign = 0.5f,
+        };
+        RightSide.Append(ProfileName);
+
+        var preview = new UIProfilePreview
+        {
+            Top = { Pixels = 25 },
+            HAlign = 0.5f,
+        };
+        RightSide.Append(preview);
+
+        // Profile management
+        float profileManagementHeight = 400;
+
+        var profilesText = new UIText(Language.GetText("Mods.VanityProfiles.UI.Profiles"))
+        {
+            Top = { Pixels = -profileManagementHeight, Percent = 1f },
+        };
+        RightSide.Append(profilesText);
+
+        var profilesPanel = new UIPanel
+        {
+            Top = { Pixels = -profileManagementHeight + 25, Percent = 1f },
+            Width = { Percent = 1f },
+            Height = { Pixels = profileManagementHeight - 20 },
+            BackgroundColor = UICommon.MainPanelBackground,
+        };
+        RightSide.Append(profilesPanel);
+
+        var profilesScrollbar = new UIScrollbar
+        {
+            Height = { Percent = 1f },
+            HAlign = 1f,
+        };
+        profilesPanel.Append(profilesScrollbar);
+
+        ProfileList = new UIList
+        {
+            Width = { Pixels = -25, Percent = 1f },
+            Height = { Percent = 1f },
+            ListPadding = 6f,
+        };
+        ProfileList.SetScrollbar(profilesScrollbar);
+        PopulateProfiles();
+        profilesPanel.Append(ProfileList);
+        #endregion
+    }
+
+    public override void Update(GameTime gameTime)
+    {
+        // Updating the profile text
+        if (VanitySystem.CurrentProfile.IsNone)
+            ProfileName.SetText(Language.GetText("Mods.VanityProfiles.UI.NoProfileSelected"));
+        else
+            ProfileName.SetText(VanitySystem.CurrentProfile.Name ?? Language.GetTextValue("Mods.VanityProfiles.UI.Unknown"));
+
+        base.Update(gameTime);
+    }
+
+    // Refreshes the left (customization UI) UI
+    public void PopulateCustomization()
+    {
+        // Reset children
+        LeftSide.RemoveAllChildren();
+
+        // If it is none don't recreate the UI
+        if (VanitySystem.CurrentProfile.IsNone)
+            return;
+
+        // Creating the UI - TODO
+        // Name
+        // Delete
+        // Equip
+        // Apply in multiplayer
+        // Set as default profile for new players
+        // Rest of the fields
+
+        var deleteButton = new UIImageButton(TextureAssets.Item[5000])
+        {
+
+        };
+        deleteButton.OnLeftClick += delegate (UIMouseEvent evt, UIElement listeningElement)
+        {
+            DeleteProfile(VanitySystem.CurrentProfile);
+        };
+        LeftSide.Append(deleteButton);
+    }
+
+    // Populates the profiles list TODO - refactor
+    public void PopulateProfiles()
+    {
+        // Clear existing elements
+        ProfileList.Clear();
+
+        // Add new profile and no profile elements
+        ProfileList.Add(new UIProfileElement(Language.GetText("Mods.VanityProfiles.UI.NewProfile"), CreateProfile, VanitySystem.NewProfile, profile: null));
+        ProfileList.Add(new UIProfileElement(Language.GetText("Mods.VanityProfiles.UI.NoProfile"), () => SetProfile(VanityProfile.None), profile: VanityProfile.None));
+
+        // Null check
+        if (VanitySystem.VanityProfiles == null)
+            return;
+
+        // Add profiles
+        foreach (var profile in VanitySystem.VanityProfiles)
+        {
+            ProfileList.Add(new UIProfileElement(profile.Name, () => SetProfile(profile), profile: profile));
+        }
+    }
+
+    public void CreateProfile()
+    {
+        var profile = new VanityProfile().Register();
+        SetProfile(profile);
+        PopulateProfiles();
+    }
+
+    public void DeleteProfile(VanityProfile profile)
+    {
+        profile.Delete();
+        SetProfile(VanityProfile.None);
+        PopulateProfiles();
+    }
+
+    public void SetProfile(VanityProfile profile)
+    {
+        profile.SetAsCurrent();
+        PopulateCustomization();
+    }
+
+    // Callback to close the window
+    public void CloseWindow()
+    {
+        SoundEngine.PlaySound(SoundID.MenuClose);
+        UISystem.Instance.VanityUIOpen = false;
+    }
+}

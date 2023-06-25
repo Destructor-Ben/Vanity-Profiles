@@ -1,0 +1,10 @@
+DefaultProfileName: Vanity Profile
+
+UI: {
+	VanityProfiles: Vanity Profiles
+	Profiles: Profiles
+	NoProfileSelected: No Profile Selected
+	NewProfile: Create New Profile
+	NoProfile: No Profile
+	Unknown: Unknown
+}

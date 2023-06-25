@@ -1,0 +1,13 @@
+Vanity Profiles TODO blurb.
+
+[c/8ffdff:Features]
+- [i:Cog] TODO
+
+[c/8ffdff:Contact]
+If you find any bugs or have any suggestions, please let me know on the mod's Steam Page, Github Repository (homepage), or Discord Server (linked on the Steam Page).
+
+[c/8ffdff:Support]
+Please consider rating and favouriting the mod on Steam, starring the Github Repository (homepage), and joining the Discord Server (linked on the Steam Page) if you would like to support this mod.
+
+[c/8ffdff:More Mods Like This]
+TODO

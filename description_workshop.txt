@@ -1,0 +1,16 @@
+Vanity Profiles TODO blurb.
+
+[h1]Features[/h1]
+[list]
+[*]TODO
+[/list]
+
+[h1]Contact[/h1]
+If you find any bugs or have any suggestions, please let me know on the mod's Steam Page, [url=https://github.com/Destructor-Ben/Vanity-Profiles]Github Repository[/url] or [url=https://discord.gg/uQzTRx2V8Y]Discord Server[/url]
+
+[h1]Support[/h1]
+[img]https://i.imgur.com/W2c5CX6.gif[/img]
+Please consider rating and favouriting the mod on Steam, starring the [url=https://github.com/Destructor-Ben/Vanity-Profiles]Github Repository[/url] and joining the [url=https://discord.gg/uQzTRx2V8Y]Discord Server[/url] if you would like to support this mod.
+
+[h1]More Mods Like This[/h1]
+TODO

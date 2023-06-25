@@ -1,0 +1,8 @@
+<Project>
+  <Import Project="..\TerraUtil\Mod.targets" />
+
+  <PropertyGroup>
+    <AssemblyName>VanityProfiles</AssemblyName>
+    <IncludeTerraUtil>true</IncludeTerraUtil>
+  </PropertyGroup>
+</Project>
