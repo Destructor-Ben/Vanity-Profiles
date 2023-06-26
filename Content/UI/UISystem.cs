@@ -1,4 +1,6 @@
-﻿namespace VanityProfiles.Content.UI;
+﻿using Terraria.UI;
+
+namespace VanityProfiles.Content.UI;
 internal class UISystem : ModSystem
 {
     public static UISystem Instance => ModContent.GetInstance<UISystem>();

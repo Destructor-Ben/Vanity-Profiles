@@ -1,7 +1,7 @@
 ﻿using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
-using Terraria.Localization;
 using Terraria.ModLoader.UI;
+using Terraria.UI;
 
 namespace VanityProfiles.Content.UI;
 // TODO - refactor
@@ -24,7 +24,7 @@ internal class UIProfileElement : UIPanel
         if (profile is VanityProfile p && !p.IsNone)
             Text = p.Name;
         if (Text == null || Text is string s && (string.IsNullOrEmpty(s) || string.IsNullOrWhiteSpace(s)))
-            Text = Language.GetText("Mods.VanityProfiles.UI.Unknown");
+            Text = Util.GetTextValue("UI.Unknown");
 
         Width.Set(0, 1f);
         Height.Set(35, 0f);

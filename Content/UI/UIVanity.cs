@@ -1,8 +1,7 @@
 ﻿using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
-using Terraria.Localization;
 using Terraria.ModLoader.UI;
+using Terraria.UI;
 
 namespace VanityProfiles.Content.UI;
 // TODO - allow profiles to be selected but not equipped
@@ -25,7 +24,7 @@ internal class UIVanity : UIState
     public void CreateUI()
     {
         #region Basic Setup
-        Window = new UIWindow(Language.GetText("Mods.VanityProfiles.UI.VanityProfiles"), CloseWindow)
+        Window = new UIWindow(Util.GetText("UI.VanityProfiles"), CloseWindow)
         {
             Width = { Pixels = 900 },
             Height = { Pixels = 600 },
@@ -66,7 +65,7 @@ internal class UIVanity : UIState
 
         #region Right Side
         // Profile preview
-        ProfileName = new UIText(Language.GetText("Mods.VanityProfiles.UI.NoProfileSelected"))
+        ProfileName = new UIText(Util.GetText("UI.NoProfileSelected"))
         {
             HAlign = 0.5f,
         };
@@ -82,7 +81,7 @@ internal class UIVanity : UIState
         // Profile management
         float profileManagementHeight = 400;
 
-        var profilesText = new UIText(Language.GetText("Mods.VanityProfiles.UI.Profiles"))
+        var profilesText = new UIText(Util.GetText("UI.Profiles"))
         {
             Top = { Pixels = -profileManagementHeight, Percent = 1f },
         };
@@ -120,9 +119,9 @@ internal class UIVanity : UIState
     {
         // Updating the profile text
         if (VanitySystem.CurrentProfile.IsNone)
-            ProfileName.SetText(Language.GetText("Mods.VanityProfiles.UI.NoProfileSelected"));
+            ProfileName.SetText(Util.GetText("UI.NoProfileSelected"));
         else
-            ProfileName.SetText(VanitySystem.CurrentProfile.Name ?? Language.GetTextValue("Mods.VanityProfiles.UI.Unknown"));
+            ProfileName.SetText(VanitySystem.CurrentProfile.Name ?? Util.GetTextValue("UI.Unknown"));
 
         base.Update(gameTime);
     }
@@ -163,8 +162,8 @@ internal class UIVanity : UIState
         ProfileList.Clear();
 
         // Add new profile and no profile elements
-        ProfileList.Add(new UIProfileElement(Language.GetText("Mods.VanityProfiles.UI.NewProfile"), CreateProfile, VanitySystem.NewProfile, profile: null));
-        ProfileList.Add(new UIProfileElement(Language.GetText("Mods.VanityProfiles.UI.NoProfile"), () => SetProfile(VanityProfile.None), profile: VanityProfile.None));
+        ProfileList.Add(new UIProfileElement(Util.GetText("UI.NewProfile"), CreateProfile, Util.GetTexture("NewProfile"), profile: null));
+        ProfileList.Add(new UIProfileElement(Util.GetText("UI.NoProfile"), () => SetProfile(VanityProfile.None), profile: VanityProfile.None));
 
         // Null check
         if (VanitySystem.VanityProfiles == null)

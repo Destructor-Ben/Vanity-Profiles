@@ -1,13 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 using Terraria.DataStructures;
-using Terraria.Localization;
 
 namespace VanityProfiles.Content;
 [Serializable]
 internal struct VanityProfile : IEquatable<VanityProfile>
 {
     [JsonIgnore]
-    public string Name = Language.GetTextValue("Mods.VanityProfiles.DefaultProfileName");
+    public string Name = Util.GetTextValue("DefaultProfileName");
     [JsonIgnore]
     public Guid ID { get; init; }
 

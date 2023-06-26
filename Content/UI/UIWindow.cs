@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent.UI.Elements;
-using Terraria.Localization;
 using Terraria.ModLoader.UI;
+using Terraria.UI;
 
 namespace VanityProfiles.Content.UI;
 internal class UIWindow : UIPanel
@@ -36,7 +36,7 @@ internal class UIWindow : UIPanel
         Append(Content);
 
         // Close button
-        var closeButton = new UIImageButton(VanitySystem.CloseButton)
+        var closeButton = new UIImageButton(Util.GetTexture("CloseButton"))
         {
             HAlign = 1f,
         };

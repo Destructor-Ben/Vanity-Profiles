@@ -1,4 +1,4 @@
-﻿using Terraria.GameContent;
+﻿using Terraria.UI;
 
 namespace VanityProfiles.Content.UI;
 internal class UIDivider : UIElement
