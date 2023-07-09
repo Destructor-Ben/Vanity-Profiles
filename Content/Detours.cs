@@ -31,8 +31,8 @@ internal class Detours : ModSystem
                 if (Main.mouseLeft && Main.mouseLeftRelease)
                 {
                     Main.mouseLeftRelease = false;
-                    UISystem.Instance.VanityUIOpen = !UISystem.Instance.VanityUIOpen;
-                    SoundEngine.PlaySound(UISystem.Instance.VanityUIOpen ? SoundID.MenuOpen : SoundID.MenuClose);
+                    UIVanity.Instance.Visible = !UIVanity.Instance.Visible;
+                    SoundEngine.PlaySound(UIVanity.Instance.Visible ? SoundID.MenuOpen : SoundID.MenuClose);
                 }
 
                 // Hover texture and string

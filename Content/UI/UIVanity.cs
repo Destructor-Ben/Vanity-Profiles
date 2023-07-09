@@ -1,37 +1,29 @@
-﻿using Terraria.Audio;
-using Terraria.GameContent.UI.Elements;
+﻿using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader.UI;
 using Terraria.UI;
+using TerraUtil.UI.Elements;
 
 namespace VanityProfiles.Content.UI;
 // TODO - allow profiles to be selected but not equipped
-internal class UIVanity : UIState
+internal class UIVanity : UIWindow
 {
-    public UIWindow Window;
+    public static UIVanity Instance => ModContent.GetInstance<UIVanity>();
+
+    protected override LocalizedText WindowTitle => Util.GetText("UI.VanityProfiles");
+
     public UIElement RightSide;
     public UIElement LeftSide;
 
     public UIText ProfileName;
     public UIList ProfileList;
 
-    public override void OnActivate()
-    {
-        RemoveAllChildren();
-        CreateUI();
-        Recalculate();
-    }
-
-    public void CreateUI()
+    protected override void CreateUI()
     {
         #region Basic Setup
-        Window = new UIWindow(Util.GetText("UI.VanityProfiles"), CloseWindow)
-        {
-            Width = { Pixels = 900 },
-            Height = { Pixels = 600 },
-            HAlign = 0.5f,
-            VAlign = 0.5f,
-        };
-        Append(Window);
+
+        base.CreateUI();
+
+        Visible = false;
 
         LeftSide = new UIElement
         {
@@ -40,7 +32,7 @@ internal class UIVanity : UIState
             PaddingBottom = 12,
             PaddingRight = 12,
         };
-        Window.Content.Append(LeftSide);
+        Content.Append(LeftSide);
 
         RightSide = new UIElement
         {
@@ -50,20 +42,24 @@ internal class UIVanity : UIState
             PaddingBottom = 12,
             PaddingLeft = 12,
         };
-        Window.Content.Append(RightSide);
+        Content.Append(RightSide);
 
         var divider = new UIDivider(horizontal: false)
         {
             HAlign = 0.6f,
         };
-        Window.Content.Append(divider);
+        Content.Append(divider);
+
         #endregion
 
         #region Left Side
+
         PopulateCustomization();
+
         #endregion
 
         #region Right Side
+
         // Profile preview
         ProfileName = new UIText(Util.GetText("UI.NoProfileSelected"))
         {
@@ -112,18 +108,19 @@ internal class UIVanity : UIState
         ProfileList.SetScrollbar(profilesScrollbar);
         PopulateProfiles();
         profilesPanel.Append(ProfileList);
+
         #endregion
     }
 
-    public override void Update(GameTime gameTime)
+    public override void SafeUpdate(GameTime gameTime)
     {
+        base.SafeUpdate(gameTime);
+
         // Updating the profile text
         if (VanitySystem.CurrentProfile.IsNone)
             ProfileName.SetText(Util.GetText("UI.NoProfileSelected"));
         else
             ProfileName.SetText(VanitySystem.CurrentProfile.Name ?? Util.GetTextValue("UI.Unknown"));
-
-        base.Update(gameTime);
     }
 
     // Refreshes the left (customization UI) UI
@@ -194,12 +191,5 @@ internal class UIVanity : UIState
     {
         profile.SetAsCurrent();
         PopulateCustomization();
-    }
-
-    // Callback to close the window
-    public void CloseWindow()
-    {
-        SoundEngine.PlaySound(SoundID.MenuClose);
-        UISystem.Instance.VanityUIOpen = false;
     }
 }

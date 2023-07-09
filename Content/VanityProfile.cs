@@ -23,8 +23,10 @@ internal struct VanityProfile : IEquatable<VanityProfile>
     private bool isNone;
 
     #region Vanity Fields
+
     // TODO - add all fields
     public int Hair = -1;
+
     #endregion
 
     public static readonly VanityProfile None = new VanityProfile() { IsNone = true };
