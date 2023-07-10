@@ -16,7 +16,7 @@ internal struct VanityProfile : IEquatable<VanityProfile>
         readonly get => isNone; init
         {
             isNone = value;
-            ID = new Guid();// TODO - default id for none
+            ID = new Guid();// TODO: default id for none
         }
     }
     [JsonIgnore]
@@ -24,7 +24,7 @@ internal struct VanityProfile : IEquatable<VanityProfile>
 
     #region Vanity Fields
 
-    // TODO - add all fields
+    // TODO: add all fields
     public int Hair = -1;
 
     #endregion
@@ -67,7 +67,7 @@ internal struct VanityProfile : IEquatable<VanityProfile>
         if (Hair != -1)
             player.hair = Hair;
 
-        // TODO - temp
+        // TODO: temp
         if (Main.IsInTheMiddleOfLoadingSettings)
             Main.NewText(drawInfo);
     }

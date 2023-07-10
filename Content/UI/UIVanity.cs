@@ -4,7 +4,7 @@ using Terraria.UI;
 using TerraUtil.UI.Elements;
 
 namespace VanityProfiles.Content.UI;
-// TODO - allow profiles to be selected but not equipped
+// TODO: allow profiles to be selected but not equipped
 internal class UIVanity : UIWindow
 {
     public static UIVanity Instance => ModContent.GetInstance<UIVanity>();
@@ -133,7 +133,8 @@ internal class UIVanity : UIWindow
         if (VanitySystem.CurrentProfile.IsNone)
             return;
 
-        // Creating the UI - TODO
+        // Creating the UI
+        // TODO: make the UI
         // Name
         // Delete
         // Equip
@@ -152,7 +153,8 @@ internal class UIVanity : UIWindow
         LeftSide.Append(deleteButton);
     }
 
-    // Populates the profiles list TODO - refactor
+    // Populates the profiles list
+    // TODO: refactor
     public void PopulateProfiles()
     {
         // Clear existing elements

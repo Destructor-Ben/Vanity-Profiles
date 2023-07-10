@@ -1,7 +1,7 @@
 ﻿namespace VanityProfiles.Content;
 internal class PlayerFieldCache
 {
-    // TODO - add fields
+    // TODO: add fields
     public int Hair = -1;
 
     public void GetFromPlayer(Player player)

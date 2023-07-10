@@ -48,6 +48,6 @@ internal class Detours : ModSystem
             Main.spriteBatch.Draw(texture.Value, Utils.CenteredRectangle(position, texture.Size()), Color.White);
         };
 
-        // TODO - detour player drawing
+        // TODO: detour player drawing
     }
 }

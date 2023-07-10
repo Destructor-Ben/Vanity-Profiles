@@ -11,7 +11,7 @@ internal class UIProfilePreview : UIPanel
         Width.Set(100, 0f);
         Height.Set(125, 0f);
         BackgroundColor = UICommon.MainPanelBackground;
-        character = new UICharacter(new Player(), hasBackPanel: false, characterScale: 2f, useAClone: false)// TODO - sizing
+        character = new UICharacter(new Player(), hasBackPanel: false, characterScale: 2f, useAClone: false)// TODO: sizing
         {
             Width = { Percent = 1f },
             Height = { Percent = 1f },

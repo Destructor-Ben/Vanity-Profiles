@@ -4,7 +4,7 @@ using Terraria.ModLoader.UI;
 using Terraria.UI;
 
 namespace VanityProfiles.Content.UI;
-// TODO - refactor
+// TODO: refactor
 internal class UIProfileElement : UIPanel
 {
     public object Text;
@@ -52,7 +52,7 @@ internal class UIProfileElement : UIPanel
         base.LeftClick(evt);
     }
 
-    // TODO - stop text and icon from making the mouse events trigger multiple times
+    // TODO: stop text and icon from making the mouse events trigger multiple times
     public override void MouseOver(UIMouseEvent evt)
     {
         SoundEngine.PlaySound(SoundID.MenuTick);
