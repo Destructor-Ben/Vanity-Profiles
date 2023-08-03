@@ -1,6 +1,6 @@
+#pragma warning disable CS0649
 using Terraria.ModLoader.Config;
 
-#pragma warning disable CS0649
 namespace VanityProfiles.Configuration;
 internal class Config : ModConfig
 {
@@ -9,4 +9,3 @@ internal class Config : ModConfig
 
     public bool TODO;
 }
-#pragma warning restore CS0649
