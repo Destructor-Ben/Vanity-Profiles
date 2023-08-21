@@ -161,7 +161,7 @@ internal class UIVanity : UIWindow
         ProfileList.Clear();
 
         // Add new profile and no profile elements
-        ProfileList.Add(new UIProfileElement(Util.GetText("UI.NewProfile"), CreateProfile, Util.GetTexture("NewProfile"), profile: null));
+        ProfileList.Add(new UIProfileElement(Util.GetText("UI.NewProfile"), CreateProfile, Util.GetTexture("UI.NewProfile"), profile: null));
         ProfileList.Add(new UIProfileElement(Util.GetText("UI.NoProfile"), () => SetProfile(VanityProfile.None), profile: VanityProfile.None));
 
         // Null check

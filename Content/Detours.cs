@@ -15,7 +15,7 @@ internal class Detours : ModSystem
             orig(inventoryX, inventoryY);
 
             // Getting values
-            var texture = Util.GetTexture("VanityButton");
+            var texture = Util.GetTexture("UI.VanityButton");
             var position = new Vector2(inventoryX - 10 - 47 - 47 - 14, inventoryY + 10 - texture.Height());
             bool hovering = Utils.CenteredRectangle(position, texture.Size() * 0.5f).Contains(Main.MouseScreen.ToPoint());
 
@@ -36,7 +36,7 @@ internal class Detours : ModSystem
                 }
 
                 // Hover texture and string
-                texture = Util.GetTexture("VanityButtonHover");
+                texture = Util.GetTexture("UI.VanityButtonHover");
                 Main.instance.MouseText(Util.GetTextValue("UI.VanityProfiles"));
             }
             else
