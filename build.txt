@@ -1,9 +1,11 @@
 displayName = Vanity Profiles
 author = Destructor_Ben
-version = 1.0.0.0
 homepage = https://github.com/Destructor-Ben/Vanity-Profiles
+
+version = 1.0.0.0
+side = Client
+dllReferences = TerraUtil
+
 hideCode = false
 hideResources = false
 includeSource = false
-side = Client
-dllReferences = TerraUtil
