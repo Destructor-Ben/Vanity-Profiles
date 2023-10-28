@@ -151,6 +151,8 @@ internal class UIVanity : UIWindow
             DeleteProfile(VanitySystem.CurrentProfile);
         };
         LeftSide.Append(deleteButton);
+
+        Recalculate();
     }
 
     // Populates the profiles list
@@ -173,6 +175,8 @@ internal class UIVanity : UIWindow
         {
             ProfileList.Add(new UIProfileElement(profile.Name, () => SetProfile(profile), profile: profile));
         }
+
+        Recalculate();
     }
 
     public void CreateProfile()

@@ -13,7 +13,9 @@ internal struct VanityProfile : IEquatable<VanityProfile>
     [JsonIgnore]
     public bool IsNone
     {
-        readonly get => isNone; init
+        readonly get => isNone;
+
+        init
         {
             isNone = value;
             ID = new Guid();// TODO: default id for none
@@ -29,7 +31,7 @@ internal struct VanityProfile : IEquatable<VanityProfile>
 
     #endregion
 
-    public static readonly VanityProfile None = new VanityProfile() { IsNone = true };
+    public static readonly VanityProfile None = new() { IsNone = true };
 
     public VanityProfile()
     {
