@@ -75,15 +75,9 @@ internal struct VanityProfile : IEquatable<VanityProfile>
     }
 
     // Equailty and whatnor
-    public static bool operator ==(VanityProfile a, object b)
-    {
-        return a.Equals(b);
-    }
+    public static bool operator ==(VanityProfile a, object b) => a.Equals(b);
 
-    public static bool operator !=(VanityProfile a, object b)
-    {
-        return !a.Equals(b);
-    }
+    public static bool operator !=(VanityProfile a, object b) => !a.Equals(b);
 
     public override readonly int GetHashCode()
     {
@@ -97,6 +91,6 @@ internal struct VanityProfile : IEquatable<VanityProfile>
 
     public readonly bool Equals(VanityProfile other)
     {
-        return IsNone && other.IsNone || ID == other.ID;
+        return (IsNone && other.IsNone) || ID == other.ID;
     }
 }

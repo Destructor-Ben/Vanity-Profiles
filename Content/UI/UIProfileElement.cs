@@ -23,7 +23,7 @@ internal class UIProfileElement : UIPanel
 
         if (profile is VanityProfile p && !p.IsNone)
             Text = p.Name;
-        if (Text == null || Text is string s && (string.IsNullOrEmpty(s) || string.IsNullOrWhiteSpace(s)))
+        if (Text == null || (Text is string s && (string.IsNullOrEmpty(s) || string.IsNullOrWhiteSpace(s))))
             Text = Util.GetTextValue("UI.Unknown");
 
         Width.Set(0, 1f);
