@@ -24,6 +24,7 @@ internal class UIVanity : UIWindow
         base.CreateUI();
 
         Visible = false;
+        ShouldUpdate = false;
 
         LeftSide = new UIElement
         {
