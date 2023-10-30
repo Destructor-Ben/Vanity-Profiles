@@ -16,10 +16,9 @@ public class VanityButtonDetour : Detour
         {
             orig(inventoryX, inventoryY);
 
-            // Getting values
             var texture = Util.GetTexture("UI.VanityButton");
             var position = new Vector2(inventoryX - 10 - 47 - 47 - 14, inventoryY + 10 - texture.Height());
-            bool hovering = Utils.CenteredRectangle(position, texture.Size() * 0.5f).Contains(Main.MouseScreen.ToPoint());
+            bool hovering = Utils.CenteredRectangle(position, texture.Size()).Contains(Main.MouseScreen.ToPoint());
 
             if (hovering && !PlayerInput.IgnoreMouseInterface)
             {
@@ -39,8 +38,9 @@ public class VanityButtonDetour : Detour
                 }
 
                 // Hover texture and string
-                texture = Util.GetTexture("UI.VanityButtonHover");
-                Main.instance.MouseText(Util.GetTextValue("UI.VanityProfiles"));
+                var hoverTexture = Util.GetTexture("UI.VanityButtonHover");
+                Main.spriteBatch.Draw(hoverTexture.Value, Utils.CenteredRectangle(position, hoverTexture.Size()), Colors.FancyUIFatButtonMouseOver);
+                Util.MouseText(Util.GetTextValue("UI.VanityProfiles"));
             }
             else
             {
@@ -50,7 +50,5 @@ public class VanityButtonDetour : Detour
             // Drawing
             Main.spriteBatch.Draw(texture.Value, Utils.CenteredRectangle(position, texture.Size()), Color.White);
         };
-
-        // TODO: detour player drawing
     }
 }

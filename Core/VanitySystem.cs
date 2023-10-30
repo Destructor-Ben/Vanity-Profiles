@@ -1,5 +1,6 @@
 ﻿namespace VanityProfiles.Core;
 
+// TODO: to apply vanity detour player drawing instead?
 public class VanitySystem : ModSystem
 {
     public static VanitySystem Instance => ModContent.GetInstance<VanitySystem>();
