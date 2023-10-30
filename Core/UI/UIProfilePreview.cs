@@ -2,7 +2,8 @@
 using Terraria.ModLoader.UI;
 
 namespace VanityProfiles.Core.UI;
-internal class UIProfilePreview : UIPanel
+
+public class UIProfilePreview : UIPanel
 {
     private UICharacter character;
 

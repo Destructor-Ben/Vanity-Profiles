@@ -4,8 +4,9 @@ using Terraria.ModLoader.UI;
 using Terraria.UI;
 
 namespace VanityProfiles.Core.UI;
+
 // TODO: refactor
-internal class UIProfileElement : UIPanel
+public class UIProfileElement : UIPanel
 {
     public object Text;
     public Action OnClick;

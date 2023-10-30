@@ -2,7 +2,8 @@
 using Terraria.ModLoader.IO;
 
 namespace VanityProfiles.Core;
-internal class VanityPlayer : ModPlayer
+
+public class VanityPlayer : ModPlayer
 {
     public VanityProfile CurrentProfile = VanityProfile.None;
     public PlayerFieldCache OriginalPlayerData = new();

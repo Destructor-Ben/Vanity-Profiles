@@ -2,8 +2,9 @@
 using Terraria.DataStructures;
 
 namespace VanityProfiles.Core;
+
 [Serializable]
-internal struct VanityProfile : IEquatable<VanityProfile>
+public struct VanityProfile : IEquatable<VanityProfile>
 {
     [JsonIgnore]
     public string Name = Util.GetTextValue("DefaultProfileName");

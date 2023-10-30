@@ -4,8 +4,9 @@ using Terraria.UI;
 using TerraUtil.UI.Elements;
 
 namespace VanityProfiles.Core.UI;
+
 // TODO: allow profiles to be selected but not equipped
-internal class UIVanity : UIWindow
+public class UIVanity : UIWindow
 {
     public static UIVanity Instance => ModContent.GetInstance<UIVanity>();
 

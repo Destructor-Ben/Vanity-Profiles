@@ -1,5 +1,6 @@
 ﻿namespace VanityProfiles.Core;
-internal class VanitySystem : ModSystem
+
+public class VanitySystem : ModSystem
 {
     public static VanitySystem Instance => ModContent.GetInstance<VanitySystem>();
     public static VanityProfile CurrentProfile

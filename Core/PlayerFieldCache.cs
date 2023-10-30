@@ -1,5 +1,6 @@
 ﻿namespace VanityProfiles.Core;
-internal class PlayerFieldCache
+
+public class PlayerFieldCache
 {
     // TODO: add fields
     public int Hair = -1;

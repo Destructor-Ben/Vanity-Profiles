@@ -1,13 +1,15 @@
 ﻿using Terraria.Audio;
 using Terraria.GameInput;
+using TerraUtil.Edits;
 using VanityProfiles.Core.UI;
 
-namespace VanityProfiles.Core;
-internal class Detours : ModSystem
+namespace VanityProfiles.Core.Edits;
+
+public class VanityButtonDetour : Detour
 {
     private bool wasHoveringLastFrame = false;
 
-    public override void Load()
+    public override void Apply()
     {
         // Vanity UI button toggle
         On_Main.DrawDefenseCounter += delegate (On_Main.orig_DrawDefenseCounter orig, int inventoryX, int inventoryY)
