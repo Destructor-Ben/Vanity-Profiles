@@ -1,8 +1,8 @@
 ﻿using Terraria.Audio;
 using Terraria.GameInput;
-using VanityProfiles.Content.UI;
+using VanityProfiles.Core.UI;
 
-namespace VanityProfiles.Content;
+namespace VanityProfiles.Core;
 internal class Detours : ModSystem
 {
     private bool wasHoveringLastFrame = false;

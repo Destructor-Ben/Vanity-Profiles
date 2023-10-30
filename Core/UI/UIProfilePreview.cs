@@ -1,7 +1,7 @@
 ﻿using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader.UI;
 
-namespace VanityProfiles.Content.UI;
+namespace VanityProfiles.Core.UI;
 internal class UIProfilePreview : UIPanel
 {
     private UICharacter character;

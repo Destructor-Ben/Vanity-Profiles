@@ -1,4 +1,4 @@
-﻿namespace VanityProfiles.Content;
+﻿namespace VanityProfiles.Core;
 internal class PlayerFieldCache
 {
     // TODO: add fields

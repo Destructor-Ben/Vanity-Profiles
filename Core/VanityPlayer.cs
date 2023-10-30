@@ -1,7 +1,7 @@
 ﻿using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 
-namespace VanityProfiles.Content;
+namespace VanityProfiles.Core;
 internal class VanityPlayer : ModPlayer
 {
     public VanityProfile CurrentProfile = VanityProfile.None;

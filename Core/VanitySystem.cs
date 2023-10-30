@@ -1,4 +1,4 @@
-﻿namespace VanityProfiles.Content;
+﻿namespace VanityProfiles.Core;
 internal class VanitySystem : ModSystem
 {
     public static VanitySystem Instance => ModContent.GetInstance<VanitySystem>();

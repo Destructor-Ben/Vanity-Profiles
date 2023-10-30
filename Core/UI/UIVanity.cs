@@ -3,7 +3,7 @@ using Terraria.ModLoader.UI;
 using Terraria.UI;
 using TerraUtil.UI.Elements;
 
-namespace VanityProfiles.Content.UI;
+namespace VanityProfiles.Core.UI;
 // TODO: allow profiles to be selected but not equipped
 internal class UIVanity : UIWindow
 {

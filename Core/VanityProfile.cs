@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using Terraria.DataStructures;
 
-namespace VanityProfiles.Content;
+namespace VanityProfiles.Core;
 [Serializable]
 internal struct VanityProfile : IEquatable<VanityProfile>
 {

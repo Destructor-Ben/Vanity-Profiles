@@ -3,7 +3,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader.UI;
 using Terraria.UI;
 
-namespace VanityProfiles.Content.UI;
+namespace VanityProfiles.Core.UI;
 // TODO: refactor
 internal class UIProfileElement : UIPanel
 {
