@@ -25,7 +25,6 @@ public class UIVanity : UIWindow
         base.CreateUI();
 
         Visible = false;
-        ShouldUpdate = false;
 
         LeftSide = new UIElement
         {
@@ -90,7 +89,7 @@ public class UIVanity : UIWindow
             Top = { Pixels = -profileManagementHeight + 25, Percent = 1f },
             Width = { Percent = 1f },
             Height = { Pixels = profileManagementHeight - 20 },
-            BackgroundColor = UICommon.MainPanelBackground,
+            BackgroundColor = UICommon.DefaultUIBlueMouseOver,
         };
         RightSide.Append(profilesPanel);
 
@@ -108,15 +107,16 @@ public class UIVanity : UIWindow
             ListPadding = 6f,
         };
         ProfileList.SetScrollbar(profilesScrollbar);
-        PopulateProfiles();
         profilesPanel.Append(ProfileList);
+
+        PopulateProfiles();
 
         #endregion
     }
 
-    public override void SafeUpdate(GameTime gameTime)
+    public override void Update(GameTime gameTime)
     {
-        base.SafeUpdate(gameTime);
+        base.Update(gameTime);
 
         // Updating the profile text
         if (VanitySystem.CurrentProfile.IsNone)
@@ -125,7 +125,28 @@ public class UIVanity : UIWindow
             ProfileName.SetText(VanitySystem.CurrentProfile.Name ?? Util.GetTextValue("UI.Unknown"));
     }
 
+    public void CreateProfile()
+    {
+        var profile = new VanityProfile().Register();
+        SetProfile(profile);
+        PopulateProfiles();
+    }
+
+    public void DeleteProfile(VanityProfile profile)
+    {
+        profile.Delete();
+        SetProfile(VanityProfile.None);
+        PopulateProfiles();
+    }
+
+    public void SetProfile(VanityProfile profile)
+    {
+        profile.SetAsCurrent();
+        PopulateCustomization();
+    }
+
     // Refreshes the left (customization UI) UI
+    // TODO: finish
     public void PopulateCustomization()
     {
         // Reset children
@@ -158,46 +179,54 @@ public class UIVanity : UIWindow
     }
 
     // Populates the profiles list
-    // TODO: refactor
     public void PopulateProfiles()
     {
-        // Clear existing elements
         ProfileList.Clear();
 
-        // Add new profile and no profile elements
-        ProfileList.Add(new UIProfileElement(Util.GetText("UI.NewProfile"), CreateProfile, Util.GetTexture("UI.NewProfile"), profile: null));
-        ProfileList.Add(new UIProfileElement(Util.GetText("UI.NoProfile"), () => SetProfile(VanityProfile.None), profile: VanityProfile.None));
+        // New profile button
+        var newProfileButton = CreateButton(Util.GetText("UI.NewProfile"), CreateProfile, null);
+        var newIcon = new UIImage(Util.GetTexture("UI.NewProfile", loadAsync: false))
+        {
+            VAlign = 0.5f,
+        };
+        newProfileButton.Append(newIcon);
+        ProfileList.Add(newProfileButton);
 
-        // Null check
+        // No profile button
+        var noProfileButton = CreateButton(Util.GetText("UI.NoProfile"), () => SetProfile(VanityProfile.None), VanityProfile.None);
+        ProfileList.Add(noProfileButton);
+
         if (VanitySystem.VanityProfiles == null)
             return;
 
-        // Add profiles
+        // Add elements for all profiles
         foreach (var profile in VanitySystem.VanityProfiles)
         {
-            ProfileList.Add(new UIProfileElement(profile.Name, () => SetProfile(profile), profile: profile));
+            // TODO: add rename and delete buttons
+            // TODO: the entire lists needs to be sorted with UISOrtableElements
+            var button = CreateButton(profile.Name, () => SetProfile(profile), profile);
+            ProfileList.Add(button);
         }
 
         Recalculate();
-    }
 
-    public void CreateProfile()
-    {
-        var profile = new VanityProfile().Register();
-        SetProfile(profile);
-        PopulateProfiles();
-    }
+        // Creates the ui element used for the buttons in the list
+        // TODO: tweak a bit later
+        UIButton<T> CreateButton<T>(T text, Action onClick, VanityProfile? profile)
+        {
+            var button = new UIButton<T>(text)
+            {
+                Height = { Pixels = 35 },
+                Width = { Percent = 1f },
+                UseAltColors = () => VanitySystem.CurrentProfile != profile,
 
-    public void DeleteProfile(VanityProfile profile)
-    {
-        profile.Delete();
-        SetProfile(VanityProfile.None);
-        PopulateProfiles();
-    }
+                AltPanelColor = UICommon.MainPanelBackground,
+                AltHoverPanelColor = UICommon.MainPanelBackground * (1 / 0.8f),
+                ClickSound = SoundID.MenuTick,
+            };
+            button.OnLeftClick += (_, _) => onClick();
 
-    public void SetProfile(VanityProfile profile)
-    {
-        profile.SetAsCurrent();
-        PopulateCustomization();
+            return button;
+        }
     }
 }

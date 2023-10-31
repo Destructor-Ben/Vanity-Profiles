@@ -13,7 +13,7 @@ public class UIProfilePreview : UIPanel
         Height.Set(125, 0f);
         BackgroundColor = UICommon.MainPanelBackground;
 
-        character = new UICharacter(new Player(), hasBackPanel: false, characterScale: 2f, useAClone: false)// TODO: sizing
+        character = new UICharacter(new Player(), hasBackPanel: false, characterScale: 2f, useAClone: false)// TODO: sizing, lighting
         {
             Width = { Percent = 1f },
             Height = { Percent = 1f },

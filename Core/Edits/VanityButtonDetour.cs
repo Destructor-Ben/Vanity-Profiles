@@ -33,7 +33,6 @@ public class VanityButtonDetour : Detour
                 {
                     Main.mouseLeftRelease = false;
                     UIVanity.Instance.Visible = !UIVanity.Instance.Visible;
-                    UIVanity.Instance.ShouldUpdate = UIVanity.Instance.Visible;
                     SoundEngine.PlaySound(UIVanity.Instance.Visible ? SoundID.MenuOpen : SoundID.MenuClose);
                 }
 

@@ -4,4 +4,11 @@
   <PropertyGroup>
     <TerraUtil-UsingContent>false</TerraUtil-UsingContent>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Textures\UI\ButtonDelete.png" />
+    <None Remove="Assets\Textures\UI\ButtonRename.png" />
+    <None Remove="Assets\Textures\UI\DeleteProfile.png" />
+    <None Remove="Assets\Textures\UI\RenameProfile.png" />
+  </ItemGroup>
 </Project>
